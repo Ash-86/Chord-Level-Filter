@@ -162,24 +162,24 @@ MuseScore {
             cmd("delete")
             curScore.selection.selectRange(t1, t3, cursor.staffIdx, cursor.staffIdx+1);
             cmd("copy")
-            cmd("undo")  
+            // cmd("undo")  
 
-            cursor.rewindToTick(t1)
+            // cursor.rewindToTick(t1)
         
-            while (cursor.segment && (cursor.tick <= t2)) {   /// selects notes with same levels on the same track
-                var el= cursor.element
-                if(el.type == Element.CHORD) {   
-                    for (var n in el.notes){
-                        if(!levels.includes(n)){
-                            curScore.selection.deselect(el.notes[n])
-                        }
-                        else{
-                            curScore.selection.select(el.notes[n], true)
-                        }  
-                    } 
-                }
-                cursor.next()
-            }        
+            // while (cursor.segment && (cursor.tick <= t2)) {   /// selects notes with same levels on the same track
+            //     var el= cursor.element
+            //     if(el.type == Element.CHORD) {   
+            //         for (var n in el.notes){
+            //             if(!levels.includes(n)){
+            //                 curScore.selection.deselect(el.notes[n])
+            //             }
+            //             else{
+            //                 curScore.selection.select(el.notes[n], true)
+            //             }  
+            //         } 
+            //     }
+            //     cursor.next()
+            // }        
 
         }
 
