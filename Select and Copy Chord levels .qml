@@ -9,13 +9,8 @@ MuseScore {
 	description: "Extends selection to notes with the similar chord-level and/or voice over the selected range"
 	version: "1.0"
     categoryCode: "Editing-Tools"
-    thumbnailName: ""	
-
-    
-    function displayMessageDlg(msg) {
-        ctrlMessageDialog.text = qsTr(msg);
-        ctrlMessageDialog.visible = true;
-    }
+    thumbnailName: ""	    
+  
 
     function noteObject(staff, voice, track, level, tick) {       
         this.staff = staff;
@@ -179,8 +174,8 @@ MuseScore {
                         }                                                
                     }
 
-                    if(!voices[s].includes(v) && cursor.element){                        
-                        while (cursor.segment && (cursor.tick <= t2)) {   /// selects notes with same levels on the same track
+                    if(!voices[s].includes(v) && cursor.element){          /// if voice wasnt in selection but exists, delete it.            
+                        while (cursor.segment && (cursor.tick <= t2)) {   
                             var el= cursor.element                                                
                             removeElement(el)
                             if(v!=0){
