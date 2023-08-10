@@ -15,3 +15,7 @@
 
  Please feel free to send any suggestions, bug reports, or just let me know if you find the plugin helpful  :) 
 
+
+
+https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/d7b92861-de82-4efb-9167-f7e60b75e5b6
+
