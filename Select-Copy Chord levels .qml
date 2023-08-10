@@ -1,7 +1,7 @@
 
 //========================================================================
 // Select/Copy Chord Levels v1.0                                          |
-// https://github.com/Ash-86/                                             |
+// https://github.com/Ash-86/Select-Copy-Chord-Levels                     |
 //                                                                        |
 //  Copyright (C)2023 Ashraf El Droubi (Ash-86)                           |
 //                                                                        |
