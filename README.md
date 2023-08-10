@@ -7,7 +7,7 @@
  
  If no end note is selected then, the selection will be extended to cover the current measure. 
 
- Running the plugin a twice consecutively will extend the selection to the whole staff.
+ Running the plugin twice consecutively will extend the selection to the whole staff.
 
  The plugin supports multiple selections across multiple staves and voices simultaneously. 
 
