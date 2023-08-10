@@ -24,7 +24,7 @@ import MuseScore 3.0
 
 MuseScore {
 	title: "Select/Copy Chord levels "
-	description: "Extends selection to notes with the similar chord-level and/or voice over the selected range"
+	description: "Extends selection to notes with the similar chord-levels and/or voices over the selected range"
 	version: "1.0"
     categoryCode: "Editing-Tools"
     thumbnailName: ""	    

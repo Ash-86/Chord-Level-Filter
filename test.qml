@@ -5,11 +5,11 @@ import MuseScore 3.0
 
 
 MuseScore {
-	title: "Test 2 "
+	title: "Test "
 	
     categoryCode: "Editing-Tools"
     thumbnailName: ""
-	description: "Eeeextends selection to chord-notes with the similar chord-level and/or voice across the Staff"
+	description: "Extends selection to chord-notes with the similar chord-level and/or voice across the Staff"
 	version: "1.0"
       
    
