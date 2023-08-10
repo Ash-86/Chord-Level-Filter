@@ -1,8 +1,26 @@
 
+//========================================================================
+// Select/Copy Chord Levels v1.0                                          |
+// https://github.com/Ash-86/                                             |
+//                                                                        |
+//  Copyright (C)2023 Ashraf El Droubi (Ash-86)                           |
+//                                                                        |
+//  This program is free software: you can redistribute it and/or modify  |
+//  it under the terms of the GNU General Public License as published by  |
+//  the Free Software Foundation, either version 3 of the License, or     |
+//  (at your option) any later version.                                   |
+//                                                                        |
+//  This program is distributed in the hope that it will be useful,       |
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of        |
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         |
+//  GNU General Public License for more details.                          |
+//                                                                        |
+//  You should have received a copy of the GNU General Public License     |
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>. |
+//========================================================================
+
 import QtQuick 2.5
 import MuseScore 3.0
-
-
 
 MuseScore {
 	title: "Select/Copy Chord levels "
@@ -11,7 +29,7 @@ MuseScore {
     categoryCode: "Editing-Tools"
     thumbnailName: ""	    
   
-
+    
     function noteObject(staff, voice, track, level, tick) {       
         this.staff = staff;
         this.voice = voice;      
@@ -19,7 +37,7 @@ MuseScore {
         this.level = level;
         this.tick = tick;
     }
-
+      
     function makeSelection(fullScore){    
 
         curScore.startCmd()
@@ -31,7 +49,7 @@ MuseScore {
     
         for (var i in els){
             var track = els[i].track
-            var staff = ~~(track/4) 
+            var staff = ~~(track/4)  
             var voice = track%4        
             var tick = els[i].parent.parent.tick       
 
@@ -52,75 +70,91 @@ MuseScore {
         
         
 
-
         var tracks=[]  ///get unique tracks of selected notes
         var staves=[]   //get unique staves of selected notes
-        var ticks=[]
+        var ticks=[]     //get unique ticks of selected notes
         for (var i in Notes){
-            if(!tracks.includes(Notes[i].track)){
-                tracks.push(Notes[i].track)
+            var sensor=0
+            for(var t in tracks){
+               if(tracks[t]==Notes[i].track){
+                  sensor++
+               }
+            } 
+            if (sensor==0) {tracks.push(Notes[i].track)}
+       
+            var sensor=0
+            for (var s in staves){            
+               if(staves[s]==Notes[i].staff){
+                sensor++
+                }
             }
-            if(!staves.includes(Notes[i].staff)){
-                staves.push(Notes[i].staff)
+            if (sensor==0) {staves.push(Notes[i].staff)}else{}
+            
+            var sensor=0
+            for(var t in ticks){
+               if(ticks[t]==Notes[i].tick){
+                  sensor++
+               }
             } 
-            if(!ticks.includes(Notes[i].tick)){
-                ticks.push(Notes[i].tick)
-            } 
+            if (sensor==0) {ticks.push(Notes[i].tick)}
         }
-        tracks.sort()
-        staves.sort()
-        ticks.sort()
+       staves.sort()
+       tracks.sort()
+       ticks.sort()
 
-
-        var voices=[]  ///get unique voices per staff
+        
+        var voices=[];  ///get unique voices per staff        
         for (var i in staves){
-            var voic=[]
+            var voic=[]            
             for (var n in Notes){
+                var sensor=0
                 if(Notes[n].staff==staves[i]){                    
-                    if (!voic.includes(Notes[n].voice)){
+                    for (var v in voic){                    
+                        if (voic[v]==Notes[n].voice){ 
+                            sensor++ 
+                        }
+                    }                
+                    if (sensor==0){ 
                         voic.push(Notes[n].voice)
                     }
                 }
-                else{                    
-                }                                
-            } 
-            voic.sort()           
+            }            
+            voic.sort();           
             voices.push(voic)
         }
-
+        
         var levels=[] //get unique levels per track
         for (var i in tracks){
             var lev=[]
             for (var n in Notes){
+                var sensor=0
                 if(Notes[n].track==tracks[i]){
-                    if (!lev.includes(Notes[n].level)){
+                    for (var l in lev){                    
+                       if (lev[l]==Notes[n].level){
+                            sensor++ 
+                        }
+                    }
+                    if (sensor==0) { 
                         lev.push(Notes[n].level)
                     }
                 }
-                else{                    
-                }                
-            }
-            lev.sort()            
+            } 
+            lev.sort()         
             levels.push(lev)
         }
 
 
+        console.log("staves : ", staves,"voices : ", voices[0],voices[1], "tracks : ",tracks,"levels : " ,levels[0],levels[1], levels[2]  )
 
        
         ///////////////////////////////////////////////////////
-        var t1= ticks[0]
-        var t2= ticks[ticks.length-1]
+        var t1 = ticks[0];  
+        var t2 = ticks[ticks.length-1];
+        cursor.track=tracks[0]
+        cursor.rewindToTick(t2)
+        cursor.next()
+        t2=cursor.tick      /////fix t2 to go till (end of last selected note)/(start of next note)
 
-        if (t1==t2) {   //// if notes selected belong to same chord or segment or only one note selected, make t1 and t2 start and end ticks of measure            
-            cursor.track=tracks[0]
-            cursor.rewindToTick(t1)  
-            t1= cursor.measure.firstSegment.tick
-            t2= cursor.measure.lastSegment.tick
-            cursor.rewindToTick(t2)
-            cursor.prev()
-            t2=cursor.tick
-        }        
-        
         for (var i in tracks){  ////// check if plugin has run once, if so, extends ticks to cover full score. 
             cursor.track=tracks[i]
             cursor.rewindToTick(t1)
@@ -132,16 +166,26 @@ MuseScore {
                     }                    
                 }                
             }
-        }////not the best way to make sure the plugin has already run 
+        }////not the best way to make sure the plugin has already run. 
 
+
+        if (ticks.length==1) {   //// if notes selected belong to same chord or segment or only one note selected, make t1 and t2 start and end ticks of measure            
+            cursor.rewindToTick(t1)                      
+            t1= cursor.measure.firstSegment.tick
+            t2= cursor.measure.lastSegment.tick
+        }
         
+       
         if(fullScore){
             var t1=curScore.firstMeasure.firstSegment.tick  /// first tick in score
-            var t2=curScore.lastSegment.tick-1              //// last tick in score
+            var t2=curScore.lastSegment.tick-1                //// last tick in score
         }
 
+        console.log("t1= ",t1, "t2= ",t2)       
+
+
         var copy=true            
-        for (var i=1; i<staves.length;i++){    //// check if selection are in consecutive staves in order to copy
+        for (var i=1; i<staves.length;i++){    //// check if selection are in consecutive staves in order to copy. 
             if ((staves[i]-staves[i-1]) >1){
                 var copy=false
             }            
@@ -155,32 +199,46 @@ MuseScore {
                     var track=staves[s]*4+v
                     cursor.track=track
                     cursor.rewindToTick(t1)
+                    var sensor=0
+                    for (var i in voices[s]) {
+                        if (voices[s][i]==v){
+                            sensor++
+                        }
+                    }
                     
-                    if(voices[s].includes(v)){
+                    if(sensor>0){
                         var trackIdx= tracks.indexOf(track)
-                        while (cursor.segment && (cursor.tick <= t2)) {   /// selects notes with same levels on the same track
+                        console.log(levels[trackIdx])
+                        while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
                             var el= cursor.element
                             if(el.type == Element.CHORD) {                    
-                                for (var n in el.notes) {                               
-                                    if (levels[trackIdx].includes(n)){
-                                        curScore.selection.deselect(el.notes[n])
-                                    }   
-                                    else {
-                                        curScore.selection.select(el.notes[n], true)
-                                    }                           
+                                var n= el.notes.length-1   
+                                while (n>=0){
+                                    var levelsensor=0
+                                    for (var l in levels[trackIdx]){                                    
+                                        if (levels[trackIdx][l]==n){                                         
+                                            levelsensor++
+                                        }
+                                    }
+                                    if (levelsensor==0){
+                                            el.remove(el.notes[n])
+                                    }                                               
+                                    n--                                                
                                 }
                             }
                             cursor.next()   
                         }                                                
                     }
 
-                    if(!voices[s].includes(v) && cursor.element){          /// if voice wasnt in selection but exists, delete it.            
-                        while (cursor.segment && (cursor.tick <= t2)) {   
-                            var el= cursor.element                                                
-                            removeElement(el)
-                            if(v!=0){
-                                var el= cursor.element                                                
+                    if(sensor<=0 ){          /// if voice wasnt in selection but exists, delete it.            
+                        while (cursor.segment && (cursor.tick < t2)) {   
+                            var el= cursor.element
+                            if(el.type == Element.CHORD) {                    
                                 removeElement(el)
+                                if(v!=0){
+                                    var el= cursor.element                                                
+                                    removeElement(el)
+                                }                                
                             }
                             cursor.next()
                         }
@@ -189,38 +247,31 @@ MuseScore {
                 }///end voices iteration
             }///end staves iteration
 
-
-            cmd("delete")
-            if(fullScore){
-                var t3=t2
-            }
-            if(!fullScore){
-                cursor.track=tracks[0]
-                cursor.rewindToTick(t2)
-                cursor.next()
-                var t3=cursor.tick 
-            }
-            curScore.selection.selectRange(t1, t3, staves[0], staves[staves.length-1]+1)   
-            cmd("copy") 
-            cmd("undo")
+            curScore.endCmd();                       
+            curScore.selection.selectRange(t1, t2, staves[0], staves[staves.length-1]+1);   
+            cmd("copy"); 
+            cmd("undo");
+            
 
             for (var i in tracks){                
-                cursor.track=tracks[i]
-                cursor.rewindToTick(t1)
-                if (cursor.element){
-                    while (cursor.segment && (cursor.tick <= t2)) {   /// selects notes with same levels on the same track
-                        var el= cursor.element
-                        if(el.type == Element.CHORD) {                    
-                            for (var n in el.notes) {                               
-                                if (levels[i].includes(n)){                             
-                                    curScore.selection.select(el.notes[n], true)
-                                }                           
-                            }
-                        }
-                        cursor.next()   
-                    }
-                }
-            }
+                 cursor.track=tracks[i]
+                 cursor.rewindToTick(t1)
+                   if (cursor.element){
+                     while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
+                         var el= cursor.element
+                         if(el.type == Element.CHORD) {                    
+                             for (var n in el.notes){
+                                 for (var l in levels[trackIdx]){
+                                    if (levels[trackIdx][l]==n){
+                                        curScore.selection.select(el.notes[n], true)       
+                                    }
+                                  } 
+                             }
+                         } 
+                         cursor.next()   
+                     }
+                 }
+             }
 
 
         }
@@ -243,55 +294,16 @@ MuseScore {
                     }
                 }
             }
+            curScore.endCmd()
         }
-          
-
-        curScore.endCmd();
-        	
     }
 
-    // Keys.onDigit0Pressed: {
-    //     makeSelection(true)
-    // }
-    
-    
-
-    // Item {
-    //     id: pressKey
-    //     focus: true
-        // Keys.onPressed: {
-           
-        //     if ( event.key === Qt.Key_Up ){
-        //         makeSelection(true)
-        //     }
-        //     else{
-        //         quit()
-        //     }
-        // }
-    // }
-
     onRun: {
-        makeSelection(false)
-        // keyPressEvent( QKeyEvent * event ) {
-      
-        //     if( event->key() == Qt::Key_A ) {
-        //         makeSelection(true)
-            
-        //     }
-        // }
-
-        // Item {
-        //     focus: true
-        //     Keys.onPressed: (event)=> {
-        //         if ((event.key == Qt.Key_Enter)) {
-        //             makeSelection(true)
-        //         }
-        //         else{
-        //             quit();
-        //         }
-        //     }
-        // }
-        quit()
-        
-	}///end onRun
+        makeSelection(false)       
+        quit()        
+	}
 }	
+
+
+
+    
