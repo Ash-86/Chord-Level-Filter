@@ -15,8 +15,8 @@
  - However, if the selected notes are not in adjacent staves, the plugin will only filter/select, but not copy (limitation from Musescore not allowing copying non adjacent staves).
 
  ## Download and install
- You only need to download "Select-Copy-Chord-Levels.qml".  
- For installation see [link](https://musescore.org/en/handbook/3/plugins#installation).
+ You only need to download "Select-Copy-Chord-Levels.qml" and put it in your MuseScore plugin folder.  
+ For more details on installation see [link](https://musescore.org/en/handbook/3/plugins#installation).
 
  ## feedback
  Please feel free to send any suggestions, bug reports, or just let me know if you find the plugin helpful  :)
