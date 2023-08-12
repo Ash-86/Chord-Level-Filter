@@ -66,10 +66,7 @@ MuseScore {
             Notes.push(note)       
         }       
 
-        ////// get min and max ticks of selected elements ////
         
-        
-
         var tracks=[]  ///get unique tracks of selected notes
         var staves=[]   //get unique staves of selected notes
         var ticks=[]     //get unique ticks of selected notes
