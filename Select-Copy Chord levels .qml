@@ -171,7 +171,7 @@ MuseScore {
                     }                    
                 }                
             }
-        }////not the best way to make sure the plugin has already run. 
+        }////not the best way to make sure the plugin has already run. Perhaps one can get the last entry in history and check if plugin had already run once. 
 
 
         if (ticks.length==1) {   //// if notes selected belong to same chord or segment or only one note selected, make t1 and t2 start and end ticks of measure            
@@ -266,11 +266,11 @@ MuseScore {
                          var el= cursor.element
                          if(el.type == Element.CHORD) {                    
                              for (var n in el.notes){
-                                 for (var l in levels[trackIdx]){
-                                    if (levels[trackIdx][l]==n){
+                                for (var l in levels[i]){
+                                    if (levels[i][l]==n){
                                         curScore.selection.select(el.notes[n], true)       
                                     }
-                                  } 
+                                } 
                              }
                          } 
                          cursor.next()   
