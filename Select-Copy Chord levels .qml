@@ -149,7 +149,12 @@ MuseScore {
        
         ///////////////////////////////////////////////////////
         var t1 = ticks[0];  
-        var t2 = ticks[ticks.length-1];
+        // var t2 = ticks[ticks.length-1];  /// supposed to get max tick but, apparently ticks.sort()  does not work properly if note is selected in first measure and end note in second measure!!! no clue why
+        var t2 = ticks[0]
+        for (var t in ticks){    ///get max and min ticks
+            if (ticks[t]<t1) { t1=ticks[t] }
+            if (ticks[t]>t2) { t2=ticks[t] }
+        }
         cursor.track=tracks[0]
         cursor.rewindToTick(t2)
         cursor.next()
