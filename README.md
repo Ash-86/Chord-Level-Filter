@@ -23,8 +23,8 @@
 
  ## Support 
  Making this plugin took time, effort and love.   
- If you appreciate this plugins and find it helpful, please consider buying me a beer:) 
- [Donate here](https://www.paypal.com/donate/?hosted_button_id=BH676KMHGVHC8)
+ If you appreciate this plugins and find it helpful, you can buy me a beer
+ [here](https://www.paypal.com/donate/?hosted_button_id=BH676KMHGVHC8) :)
 
 
  ## Demo
