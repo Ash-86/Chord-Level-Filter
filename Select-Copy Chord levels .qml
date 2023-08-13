@@ -180,7 +180,7 @@ MuseScore {
        
         if(fullScore){
             var t1=curScore.firstMeasure.firstSegment.tick  /// first tick in score
-            var t2=curScore.lastSegment.tick-1                //// last tick in score
+            var t2=curScore.lastSegment.tick+1                //// last tick in score
         }
 
         console.log("t1= ",t1, "t2= ",t2)       
@@ -207,13 +207,14 @@ MuseScore {
                             sensor++
                         }
                     }
-                    
+                    var notesDeleted=0
                     if(sensor>0){
                         var trackIdx= tracks.indexOf(track)
                         console.log(levels[trackIdx])
                         while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
                             var el= cursor.element
-                            if(el.type == Element.CHORD) {                    
+                            if(el.type == Element.CHORD) {
+                                                   
                                 var n= el.notes.length-1   
                                 while (n>=0){
                                     var levelsensor=0
@@ -224,6 +225,7 @@ MuseScore {
                                     }
                                     if (levelsensor==0){
                                             el.remove(el.notes[n])
+                                            notesDeleted++
                                     }                                               
                                     n--                                                
                                 }
@@ -251,8 +253,10 @@ MuseScore {
 
             curScore.endCmd();                       
             curScore.selection.selectRange(t1, t2, staves[0], staves[staves.length-1]+1);   
-            cmd("copy"); 
-            cmd("undo");
+            cmd("copy");
+            if (notesDeleted>0) {
+                cmd("undo");
+            }
             
 
             for (var i in tracks){                
