@@ -254,9 +254,9 @@ MuseScore {
             curScore.endCmd();                       
             curScore.selection.selectRange(t1, t2, staves[0], staves[staves.length-1]+1);   
             cmd("copy");
-            if (notesDeleted>0) {
+            // if (notesDeleted>0) {
                 cmd("undo");
-            }
+            // }
             
 
             for (var i in tracks){                
