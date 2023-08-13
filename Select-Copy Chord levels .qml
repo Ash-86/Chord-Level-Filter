@@ -196,6 +196,7 @@ MuseScore {
         
         /////////////////////////////////////////////////////////
         if (copy==true){
+            var notesDeleted=0
             for(var s in staves){
                 for (var v=0; v<4; v++){
                     var track=staves[s]*4+v
@@ -207,7 +208,7 @@ MuseScore {
                             sensor++
                         }
                     }
-                    var notesDeleted=0
+                    
                     if(sensor>0){
                         var trackIdx= tracks.indexOf(track)
                         console.log(levels[trackIdx])
@@ -239,9 +240,11 @@ MuseScore {
                             var el= cursor.element
                             if(el.type == Element.CHORD) {                    
                                 removeElement(el)
+                                notesDeleted++
                                 if(v!=0){
                                     var el= cursor.element                                                
                                     removeElement(el)
+                                    notesDeleted++
                                 }                                
                             }
                             cursor.next()
@@ -254,9 +257,9 @@ MuseScore {
             curScore.endCmd();                       
             curScore.selection.selectRange(t1, t2, staves[0], staves[staves.length-1]+1);   
             cmd("copy");
-            // if (notesDeleted>0) {
+            if (notesDeleted>0) {
                 cmd("undo");
-            // }
+            }
             
 
             for (var i in tracks){                
