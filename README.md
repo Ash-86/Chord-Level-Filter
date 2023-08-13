@@ -3,12 +3,16 @@
 
  ## Usage
  - Select a note at a chord level(s) you wish to filter/select/copy.
-
+   
  - Select an end note to which you want the selection extended.
- 
- - If no end note is selected then, the selection will be extended to cover the current measure. 
+    
+ - If no end note is selected then, the selection will be extended to cover the current measure.
 
  - Running the plugin twice consecutively will extend the selection to the whole staff.
+   
+ - The selection is automatically copied to clipboard.
+   
+ - Just paste normally using Ctrl+V in any measure you like.  
 
  - The plugin supports multiple selections across multiple staves and voices simultaneously. 
 
