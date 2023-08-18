@@ -27,7 +27,7 @@ MuseScore {
 	description: "Extends selection to notes with the similar chord-levels and/or voices over the selected range"
 	version: "1.0"
     categoryCode: "Editing-Tools"
-    thumbnailName: ""	    
+    thumbnailName: "thumbnail.jpg"	    
   
     
     function noteObject(staff, voice, track, level, tick) {       
@@ -40,10 +40,11 @@ MuseScore {
       
     function makeSelection(fullScore){    
 
-        curScore.startCmd()
+        
         var cursor = curScore.newCursor();        
-        var els = curScore.selection.elements      
+        var els = curScore.selection.elements 
 
+        
         var note=[]
         var Notes=[]
     
@@ -193,7 +194,7 @@ MuseScore {
             }            
         }
         
-        
+        curScore.startCmd()
         /////////////////////////////////////////////////////////
         if (copy==true){
             var notesDeleted=0
@@ -308,8 +309,15 @@ MuseScore {
     }
 
     onRun: {
-        makeSelection(false)       
-        quit()        
+        var els = curScore.selection.elements 
+
+        if (els[0].type==Element.CHORD || els[0].type==Element.NOTE) {
+            makeSelection(false)
+            quit() 
+        }
+        else{                   
+            quit()  
+        }
 	}
 }	
 
