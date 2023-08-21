@@ -264,26 +264,24 @@ MuseScore {
             
 
             for (var i in tracks){                
-                 cursor.track=tracks[i]
-                 cursor.rewindToTick(t1)
-                   if (cursor.element){
-                     while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
-                         var el= cursor.element
-                         if(el.type == Element.CHORD) {                    
-                             for (var n in el.notes){
+                cursor.track=tracks[i]
+                cursor.rewindToTick(t1)
+                if (cursor.element){
+                    while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
+                        var el= cursor.element
+                        if(el.type == Element.CHORD) {                    
+                            for (var n in el.notes){
                                 for (var l in levels[i]){
                                     if (levels[i][l]==n){
                                         curScore.selection.select(el.notes[n], true)       
                                     }
                                 } 
-                             }
-                         } 
-                         cursor.next()   
-                     }
-                 }
-             }
-
-
+                            }
+                        } 
+                        cursor.next()   
+                    }
+                }
+            }
         }
 
         if (copy==false){
