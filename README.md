@@ -27,9 +27,15 @@
  This is useful when having chords with different sizes.
  
  *example:  
- If var counting= "up", you can select 2nd notes from the bottom.   
- If var counting= "down", you can select 2nd notes from the top.*  
- ![output](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/01eb3033-9857-481c-ab73-c3db0707c939)
+ If var counting= "up", you can select 2nd notes from the bottom.*
+ 
+ ![up](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/eab7cf17-fb43-4bd8-bd2d-ba731680d3f2)
+
+*If var counting= "down", you can select 2nd notes from the top.*
+  
+ ![down](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/cddca06c-08fc-498e-8975-93858a3d651b)
+
+
 
 
  In both cases, top and bottom notes can be selected. 
