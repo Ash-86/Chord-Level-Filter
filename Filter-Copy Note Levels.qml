@@ -22,7 +22,7 @@ import QtQuick 2.5
 import MuseScore 3.0
 
 MuseScore {
-	title: "Select/Copy Chord levels Down"
+	title: "Filter/Copy Note levels"
 	description: "Extends selection to notes with the similar chord-levels and/or voices over the selected range"
 	version: "1.0"
     categoryCode: "Editing-Tools"
