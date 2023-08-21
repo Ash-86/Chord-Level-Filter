@@ -28,7 +28,9 @@
  
  *example:  
  If var counting= "up", you can select 2nd notes from the bottom.   
- If var counting= "down", you can select 2nd notes from the top.*
+ If var counting= "down", you can select 2nd notes from the top.*  
+ ![output](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/01eb3033-9857-481c-ab73-c3db0707c939)
+
 
  In both cases, top and bottom notes can be selected. 
  
