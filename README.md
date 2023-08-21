@@ -27,8 +27,8 @@
  This is useful when having chords with different sizes.
  
  *example:  
- If var counting= "up", you cant select 2nd notes from the bottom.   
- If var counting= "down", you cant select 2nd notes from the top.*
+ If var counting= "up", you can select 2nd notes from the bottom.   
+ If var counting= "down", you can select 2nd notes from the top.*
 
  In both cases, top and bottom notes can be selected. 
  
