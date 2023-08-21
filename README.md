@@ -19,10 +19,20 @@
  - However, if the selected notes are not in adjacent staves, the plugin will only filter/select, but not copy (limitation from Musescore not allowing copying non adjacent staves).
 
  ## Download and install
- You only need to download "Select-Copy-Chord-Levels.qml" and put it in your MuseScore plugin folder.  
+ You only need to download "Filter-Copy Note Levels.qml" and put it in your MuseScore plugin folder.  
  For more details on installation see [link](https://musescore.org/en/handbook/3/plugins#installation).
 
- ## feedback
+ ## Configuration options
+ You can choose the counting direction the code follows. Just comment out the corresponding ***"var counting"*** at the beginning of the code to suit your preference. 
+ This is useful when having chords with different sizes.
+ 
+ *example:  
+ If var counting= "up", you cant select 2nd notes from the bottom.   
+ If var counting= "down", you cant select 2nd notes from the top.*
+
+ In both cases, top and bottom notes can be selected. 
+ 
+ ## Feedback
  Please feel free to send any suggestions, bug reports, or just let me know if you find the plugin helpful  :)
 
  ## Support 
