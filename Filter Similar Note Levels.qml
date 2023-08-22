@@ -1,5 +1,5 @@
 //==============================================================================
-// Filter/Copy Note Levels v1.0                                          
+// Filter Similar Note Levels v1.0                                          
 // https://github.com/Ash-86/Select-Copy-Chord-Levels                     
 //                                                                        
 //  Copyright (C)2023 Ashraf El Droubi (Ash-86)                           
@@ -22,9 +22,9 @@ import QtQuick 2.5
 import MuseScore 3.0
 
 MuseScore {
-	title: "Filter/Copy Note levels"
-	description: "Extends selection to notes with the similar chord-levels and/or voices over the selected range"
-	version: "1.0"
+	title: "Filter Similar Note levels"
+	description: "Selects and copies notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
+	version: "1.1"
     categoryCode: "Editing-Tools"
     thumbnailName: "thumbnail.jpg"	    
   
