@@ -36,7 +36,7 @@ This is useful when having chords with different sizes.
 ![down](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/cddca06c-08fc-498e-8975-93858a3d651b)
 
 
- In both cases, top and bottom notes can be selected. 
+ *In both cases, top and bottom notes can be selected.*
 
  ## Changelog
  ### v1.1
