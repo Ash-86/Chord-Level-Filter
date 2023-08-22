@@ -25,23 +25,31 @@
   ## Demo
  https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/d7b92861-de82-4efb-9167-f7e60b75e5b6
 
- ## Configuration options
- You can choose the counting direction the code follows. Just comment out the corresponding ***"var counting"*** at the beginning of the code to suit your preference. 
- This is useful when having chords with different sizes.
+ ## Configuration Options
+You can choose the counting direction the code follows. Just comment out the corresponding ***"var counting"*** at the beginning of the code to suit your preference. 
+This is useful when having chords with different sizes.
  
- *example:  
- If var counting= "up", you can select 2nd notes from the bottom.*
+ *Examples:* 
  
- ![up](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/eab7cf17-fb43-4bd8-bd2d-ba731680d3f2)
+*If var counting= "up", you can select 2nd notes from the bottom.*
+ 
+![up](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/eab7cf17-fb43-4bd8-bd2d-ba731680d3f2)
 
 *If var counting= "down", you can select 2nd notes from the top.*
   
- ![down](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/cddca06c-08fc-498e-8975-93858a3d651b)
-
-
+![down](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/cddca06c-08fc-498e-8975-93858a3d651b)
 
 
  In both cases, top and bottom notes can be selected. 
+
+ ## Changelog
+ ### v1.1
+ - Plugin name changed to Filter-Copy Note Levels
+ - Bug fix: Running the plugin when an annotation is selected doesn't crash the system anymore.
+ - Bug fix: Selection now extends till the end of the score correctly.
+ - Top notes can now be selected when there are chords with different sizes.
+ - You can now choose whether you like the levels counted top-down or bottom-up. see **Configuration Options**. 
+ 
  
  ## Feedback
  Please feel free to send any suggestions, bug reports, or just let me know if you find the plugin helpful  :)
