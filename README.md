@@ -1,5 +1,5 @@
 # Filter-Copy Note Levels: *Plugin for MuseScore 4.x*
- A MuseScore 4.x plugin that extends and copies selection to notes with the similar chord-level(s) and/or voices over a selected range.  
+ A MuseScore 4.x plugin that extends and copies selection to notes with the similar chord-note-level(s) and/or voices over a selected range.  
 
  ## Usage
  - Select a note(s) at the chord level(s) you wish to filter/select/copy.
