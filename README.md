@@ -48,7 +48,7 @@ This is useful when having chords with different sizes.
 
  
  ## Download and Installation
- You only need to download "Filter-Copy Note Levels.qml" and put it in your MuseScore plugin folder.  
+ Download folder, unzip and move it to your MuseScore plugin folder.  
  For more details on installation see [link](https://musescore.org/en/handbook/3/plugins#installation).
 
  
