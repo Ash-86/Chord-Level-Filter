@@ -22,7 +22,7 @@
  https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/d7b92861-de82-4efb-9167-f7e60b75e5b6
 
  ## Configuration Options
-You can choose the counting direction the code follows. Just comment out the corresponding ***"var counting"*** at the beginning of the code to suit your preference. 
+You can choose the direction the code follows to count note levels. Just comment out the corresponding ***"var counting"*** at the beginning of the code to suit your preference. 
 This is useful when having chords with different sizes.
  
  *Examples:* 
