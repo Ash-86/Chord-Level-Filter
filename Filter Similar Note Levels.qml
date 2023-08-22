@@ -1,6 +1,6 @@
 //==============================================================================
 // Filter Similar Note Levels v1.0                                          
-// https://github.com/Ash-86/Select-Copy-Chord-Levels                     
+// https://github.com/Ash-86/Filter-Similar-Note-Levels                     
 //                                                                        
 //  Copyright (C)2023 Ashraf El Droubi (Ash-86)                           
 //                                                                        
