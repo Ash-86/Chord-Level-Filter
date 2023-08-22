@@ -2,11 +2,11 @@
  A MuseScore 4.x plugin that extends and copies selection to notes with the similar chord-level(s) and/or voices over a selected range.  
 
  ## Usage
- - Select a note at a chord level(s) you wish to filter/select/copy.
+ - Select a note(s) at the chord level(s) you wish to filter/select/copy.
    
  - Select an end note to which you want the selection extended.
     
- - If no end note is selected then, the selection will be extended to cover the current measure.
+ - If no end note is selected then, the selection will be extended over the current measure.
 
  - Running the plugin twice consecutively will extend the selection to the whole staff.
    
