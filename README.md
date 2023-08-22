@@ -18,10 +18,6 @@
 
  - However, if the selected notes are not in adjacent staves, the plugin will only filter/select, but not copy (limitation from Musescore not allowing copying non adjacent staves).
 
- ## Download and install
- You only need to download "Filter-Copy Note Levels.qml" and put it in your MuseScore plugin folder.  
- For more details on installation see [link](https://musescore.org/en/handbook/3/plugins#installation).
-
   ## Demo
  https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/d7b92861-de82-4efb-9167-f7e60b75e5b6
 
@@ -49,7 +45,12 @@ This is useful when having chords with different sizes.
  - Bug fix: Selection now extends till the end of the score correctly.
  - Top notes can now be selected when there are chords with different sizes.
  - You can now choose whether you like the levels counted top-down or bottom-up. see **Configuration Options**. 
+
  
+ ## Download and Installation
+ You only need to download "Filter-Copy Note Levels.qml" and put it in your MuseScore plugin folder.  
+ For more details on installation see [link](https://musescore.org/en/handbook/3/plugins#installation).
+
  
  ## Feedback
  Please feel free to send any suggestions, bug reports, or just let me know if you find the plugin helpful  :)
