@@ -40,6 +40,8 @@ This is useful when having chords with different sizes.
 
  ## Changelog
  ### v1.1
+ - Bug fix: Fixed selection in non-adjacent staves
+ ### v1.1
  - Plugin name changed to Filter Similar Note Levels
  - Bug fix: Running the plugin when an annotation is selected doesn't crash the system anymore.
  - Bug fix: Selection now extends till the end of the score correctly.
