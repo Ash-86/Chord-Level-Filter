@@ -24,7 +24,7 @@ import MuseScore 3.0
 MuseScore {
 	title: "Filter Similar Note levels"
 	description: "Selects and copies notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
-	version: "1.1"
+	version: "1.11"
     categoryCode: "Editing-Tools"
     thumbnailName: "thumbnail.jpg"	    
   
@@ -312,9 +312,11 @@ MuseScore {
                         var el= cursor.element
                         if(el.type == Element.CHORD) {                    
                             for (var n in el.notes) {                               
-                                if (levels[i].includes(n)){                             
-                                    if (counting=="up") {curScore.selection.select(el.notes[n], true)}  
-                                    if (counting=="down") {curScore.selection.select(el.notes[el.notes.length-1-n], true)}  
+                                for (var l in levels[i]){
+                                    if (levels[i][l]==n){                            
+                                        if (counting=="up") {curScore.selection.select(el.notes[n], true)}  
+                                        if (counting=="down") {curScore.selection.select(el.notes[el.notes.length-1-n], true)}  
+                                    }
                                 }
                             }
                             if (levels[i].includes(100)){   /// check bottom note 
