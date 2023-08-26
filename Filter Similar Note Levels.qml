@@ -164,9 +164,24 @@ MuseScore {
         cursor.track=tracks[0]
         cursor.rewindToTick(t2)
         cursor.next()
-        t2=cursor.tick      /////fix t2 to go till (end of last selected note)/(start of next note)
+        if (cursor.tick==0){  //check if end of track or staff
+            cursor.rewindToTick(t2)
+            var endOfMeasureTick=cursor.measure.lastSegment.tick
+            var endOfStaffTick= curScore.lastSegment.tick
+            if (endOfMeasureTick==endOfStaffTick){
+                var t2=curScore.lastSegment.tick+1 
+            }
+            else{
+                t2= cursor.measure.lastSegment.tick  //in case of end of voice but not staff
+            }             
+        }
+        else{
+            t2=cursor.tick      /////fix t2 to go till (end of last selected note)/(start of next note)
+        }
 
-        for (var i in tracks){  ////// check if plugin has run once, if so, extends ticks to cover full score. 
+
+        /////////////////////////////  check if plugin has run once, if so, extends ticks to cover full score. 
+        for (var i in tracks){   
             cursor.track=tracks[i]
             cursor.rewindToTick(t1)
             cursor.next()
