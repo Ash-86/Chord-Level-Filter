@@ -323,7 +323,7 @@ MuseScore {
                 cursor.track=tracks[i]
                 cursor.rewindToTick(t1)
                 if (cursor.element){
-                    while (cursor.segment && (cursor.tick <= t2)) {   /// selects notes with same levels on the same track
+                    while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
                         var el= cursor.element
                         if(el.type == Element.CHORD) {                    
                             for (var n in el.notes) {                               
