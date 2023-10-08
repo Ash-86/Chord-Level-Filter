@@ -32,16 +32,8 @@ MuseScore {
             thumbnailName = "thumbnail.jpg"
             categoryCode = "Editing-Tools"
         }
-    }	    
-  
+    }	      
     
-    function noteObject(staff, voice, track, level, tick) {       
-        this.staff = staff;
-        this.voice = voice;      
-        this.track = track;
-        this.level = level;
-        this.tick = tick;
-    }
       
     function makeSelection(fullScore){    
 
@@ -77,7 +69,7 @@ MuseScore {
                     }
                 }                
             }  
-            note = new noteObject(staff, voice, track, level, tick) 
+            const note = {staff:staff, voice:voice, track:track, level:level, tick:tick}  
             Notes.push(note)       
         }       
 
