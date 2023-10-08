@@ -22,7 +22,7 @@ import QtQuick 2.5
 import MuseScore 3.0
 
 MuseScore {
-	menuPath: "Plugins.Pitch and Rhythm Transformer"
+	menuPath: "Plugins.Filter Similar Note levels"
 	description: "Selects and copies notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
 	version: "1.11"
 
