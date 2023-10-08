@@ -22,11 +22,17 @@ import QtQuick 2.5
 import MuseScore 3.0
 
 MuseScore {
-	title: "Filter Similar Note levels"
+	menuPath: "Plugins.Pitch and Rhythm Transformer"
 	description: "Selects and copies notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
 	version: "1.11"
-    categoryCode: "Editing-Tools"
-    thumbnailName: "thumbnail.jpg"	    
+
+    Component.onCompleted : {
+        if (mscoreMajorVersion >= 4) {
+            title = "Filter Similar Note levels"
+            thumbnailName = "thumbnail.jpg"
+            categoryCode = "Editing-Tools"
+        }
+    }	    
   
     
     function noteObject(staff, voice, track, level, tick) {       
@@ -80,29 +86,15 @@ MuseScore {
         var staves=[]   //get unique staves of selected notes
         var ticks=[]     //get unique ticks of selected notes
         for (var i in Notes){
-            var sensor=0
-            for(var t in tracks){
-               if(tracks[t]==Notes[i].track){
-                  sensor++
-               }
-            } 
-            if (sensor==0) {tracks.push(Notes[i].track)}
-       
-            var sensor=0
-            for (var s in staves){            
-               if(staves[s]==Notes[i].staff){
-                sensor++
-                }
+            if(!tracks.some(function(x){return x==Notes[i].track})){
+                tracks.push(Notes[i].track)
+            }       
+            if(!staves.some(function(x){return x==Notes[i].staff})){
+                staves.push(Notes[i].staff)
+            }                       
+            if(!ticks.some(function(x){return x==Notes[i].tick})){                          
+                ticks.push(Notes[i].tick)
             }
-            if (sensor==0) {staves.push(Notes[i].staff)}
-            
-            var sensor=0
-            for(var t in ticks){
-               if(ticks[t]==Notes[i].tick){
-                  sensor++
-               }
-            } 
-            if (sensor==0) {ticks.push(Notes[i].tick)}
         }
        staves.sort()
        tracks.sort()
@@ -112,16 +104,10 @@ MuseScore {
         var voices=[];  ///get unique voices per staff        
         for (var i in staves){
             var voic=[]            
-            for (var n in Notes){
-                var sensor=0
+            for (var n in Notes){                
                 if(Notes[n].staff==staves[i]){                    
-                    for (var v in voic){                    
-                        if (voic[v]==Notes[n].voice){ 
-                            sensor++ 
-                        }
-                    }                
-                    if (sensor==0){ 
-                        voic.push(Notes[n].voice)
+                    if (!voic.some(function(x){return x==Notes[n].voice})){ 
+                        voic.push(Notes[n].voice) 
                     }
                 }
             }            
@@ -133,14 +119,8 @@ MuseScore {
         for (var i in tracks){
             var lev=[]
             for (var n in Notes){
-                var sensor=0
                 if(Notes[n].track==tracks[i]){
-                    for (var l in lev){                    
-                       if (lev[l]==Notes[n].level){
-                            sensor++ 
-                        }
-                    }
-                    if (sensor==0) { 
+                    if (!lev.some(function(x){return x==Notes[n].level})){                            
                         lev.push(Notes[n].level)
                     }
                 }
@@ -226,14 +206,7 @@ MuseScore {
                     var track=staves[s]*4+v
                     cursor.track=track
                     cursor.rewindToTick(t1)
-                    var sensor=0
-                    for (var i in voices[s]) {
-                        if (voices[s][i]==v){
-                            sensor++
-                        }
-                    }
-                    
-                    if(sensor>0){
+                    if (voices[s].some(function(x){return x==v})){
                         var trackIdx= tracks.indexOf(track)
                         console.log(levels[trackIdx])
                         while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
@@ -263,7 +236,7 @@ MuseScore {
                         }                                                
                     }
 
-                    if(sensor<=0 ){          /// if voice wasnt in selection but exists, delete it.            
+                    if (!voices[s].some(function(x){return x==v})){           /// if voice wasnt in selection but exists, delete it.            
                         while (cursor.segment && (cursor.tick < t2)) {   
                             var el= cursor.element
                             if(el.type == Element.CHORD) {                    
@@ -297,15 +270,13 @@ MuseScore {
                     while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
                         var el= cursor.element
                         if(el.type == Element.CHORD) {                    
-                            for (var n in el.notes){
-                                for (var l in levels[i]){
-                                    if (levels[i][l]==n){
-                                        if (counting=="up") {curScore.selection.select(el.notes[n], true) }      
-                                        if (counting=="down") {curScore.selection.select(el.notes[el.notes.length-1-n], true) }    
-                                    }
-                                } 
+                            for (var n in el.notes){                                
+                                if (levels[i].some(function(x){return x==n})){ 
+                                    if (counting=="up") {curScore.selection.select(el.notes[n], true) }      
+                                    if (counting=="down") {curScore.selection.select(el.notes[el.notes.length-1-n], true) }    
+                                }                                
                             }
-                            if (levels[i].includes(100)){   /// check top or bottom note 
+                            if (levels[i].some(function(x){return x==100})){   /// check top or bottom note 
                                 if (counting=="down") {curScore.selection.select(el.notes[0], true)}
                                 if (counting=="up") {curScore.selection.select(el.notes[el.notes.length-1], true)}
                             }   
@@ -326,15 +297,13 @@ MuseScore {
                     while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
                         var el= cursor.element
                         if(el.type == Element.CHORD) {                    
-                            for (var n in el.notes) {                               
-                                for (var l in levels[i]){
-                                    if (levels[i][l]==n){                            
-                                        if (counting=="up") {curScore.selection.select(el.notes[n], true)}  
-                                        if (counting=="down") {curScore.selection.select(el.notes[el.notes.length-1-n], true)}  
-                                    }
+                            for (var n in el.notes) { 
+                                if (levels[i].some(function(x){return x==n})){                           
+                                    if (counting=="up") {curScore.selection.select(el.notes[n], true)}  
+                                    if (counting=="down") {curScore.selection.select(el.notes[el.notes.length-1-n], true)}  
                                 }
                             }
-                            if (levels[i].includes(100)){   /// check bottom note 
+                            if (levels[i].some(function(x){return x==100})){   /// check bottom note 
                                 if (counting=="down") {curScore.selection.select(el.notes[0], true)}
                                 if (counting=="up") { curScore.selection.select(el.notes[el.notes.length-1], true)}
                             }                           
@@ -352,10 +321,12 @@ MuseScore {
 
         if (els[0].type==Element.CHORD || els[0].type==Element.NOTE) {
             makeSelection(false)
-            quit() 
+            if (mscoreMajorVersion >= 4) {quit()}
+            else{Qt.quit()} 
         }
         else{                   
-            quit()  
+            if (mscoreMajorVersion >= 4) {quit()}
+            else{Qt.quit()}  
         }
 	}
 }	
