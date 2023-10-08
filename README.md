@@ -1,5 +1,5 @@
-# Filter Similar Note Levels: *Plugin for MuseScore 4.x*
- A MuseScore 4.x plugin that selects and copies notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices. 
+# Filter Similar Note Levels: *Plugin for MuseScore*
+ A MuseScore 3.x/4.x plugin that selects and copies notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices. 
 
  ## Usage
  - Select a note(s) at the chord level(s) you wish to filter/select/copy.
