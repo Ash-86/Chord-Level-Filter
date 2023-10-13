@@ -204,24 +204,19 @@ MuseScore {
                         while (cursor.segment && (cursor.tick < t2)) {   /// selects notes with same levels on the same track
                             var el= cursor.element
                             if(el.type == Element.CHORD) {
-                                                   
-                                var n= el.notes.length-1   
-                                while (n>=0){                                   
+                                for (var n= el.notes.length-1; n>=0; n--){                                   
                                     var levelsensor=0
-                                    for (var l in levels[trackIdx]){                                    
-                                        if (levels[trackIdx][l]==n ){                                         
-                                            levelsensor++
-                                        }
-                                        if (n==el.notes.length-1 && levels[trackIdx][l]==100){  /// check for top or bottom note
-                                            levelsensor++
-                                        }
+                                    if (levels[trackIdx].some(function(x){return x==n})){                                         
+                                        levelsensor++
+                                    }
+                                    if (n==el.notes.length-1 && levels[trackIdx].some(function(x){return x==100})){  /// check for top or bottom note
+                                        levelsensor++
                                     }
                                     if (levelsensor==0){
                                             if (counting=="up") {el.remove(el.notes[n])}  
                                             if (counting=="down") {el.remove(el.notes[el.notes.length-1-n])}  
                                             notesDeleted++
-                                    }                                                                              
-                                    n--                                                
+                                    } 
                                 }
                             }
                             cursor.next()   
@@ -313,12 +308,10 @@ MuseScore {
 
         if (els[0].type==Element.CHORD || els[0].type==Element.NOTE) {
             makeSelection(false)
-            if (mscoreMajorVersion >= 4) {quit()}
-            else{Qt.quit()} 
+            return
         }
         else{                   
-            if (mscoreMajorVersion >= 4) {quit()}
-            else{Qt.quit()}  
+            return 
         }
 	}
 }	
