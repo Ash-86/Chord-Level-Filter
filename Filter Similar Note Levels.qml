@@ -88,9 +88,9 @@ MuseScore {
                 ticks.push(Notes[i].tick)
             }
         }
-       staves.sort()
-       tracks.sort()
-       ticks.sort()
+       staves.sort(function(a,b){return a-b})
+       tracks.sort(function(a,b){return a-b})
+       ticks.sort(function(a,b){return a-b})
 
         
         var voices=[];  ///get unique voices per staff        
@@ -126,13 +126,9 @@ MuseScore {
 
        
         ///////////////////////////////////////////////////////
-        var t1 = ticks[0];  
-        // var t2 = ticks[ticks.length-1];  /// supposed to get max tick but, apparently ticks.sort()  does not work properly if note is selected in first measure and end note in second measure!!! no clue why
-        var t2 = ticks[0]
-        for (var t in ticks){    ///get max and min ticks
-            if (ticks[t]<t1) { t1=ticks[t] }
-            if (ticks[t]>t2) { t2=ticks[t] }
-        }
+        var t1 = ticks[0];  // min tick
+        var t2 = ticks[ticks.length-1]; //max tick 
+
         cursor.track=tracks[0]
         cursor.rewindToTick(t2)
         cursor.next()
