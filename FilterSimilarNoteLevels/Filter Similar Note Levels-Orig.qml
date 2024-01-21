@@ -40,8 +40,6 @@ MuseScore {
 
     onRun: {
         
-        var counting= "up";
-        
         var els = curScore.selection.elements
 
         if (((typeof els[0])!=="undefined") && (els[0].type == Element.NOTE)) {
@@ -51,7 +49,7 @@ MuseScore {
             * @param strictCounting true|false(default, original mode) In strict mode, selecting notes 1,3 from 2-notes chord, only the 1st note of that chord will be selected. In non strict mode, the notes 1,2 will be selected
             * @param expandToFullScore true(default)|false 
             */
-            Core.makeSelection(counting==="up", false, false, false);
+            Core.makeSelection(true, false, false, false);
             return;
         } else {
             console.log("Invalid selection");
