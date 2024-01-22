@@ -32,7 +32,7 @@ function makeSelection(up, forceFullScore, strictCounting, expandToFullScore) {
     /// expand single selection to score or measure ? ///
     var defaultExpand=((typeof expandToFullScore === "undefined")||expandToFullScore)?"score":"measure";
     var strict=(strictCounting)?true:false;
-    var fullScore=(fullScore)?true:false;
+    var fullScore=(forceFullScore)?true:false;
     
 
     var cursor = curScore.newCursor();               
