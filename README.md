@@ -39,6 +39,13 @@ This is useful when having chords with different sizes.
  *In both cases, top and bottom notes can be selected.*
 
  ## Changelog
+ ### v2.0
+ - Improvement: New configuration to select the full score or the current measure (original) in case of a single note selection
+ - Improvement: New configuration to have a strict or unstrict (original) counting of the notes
+ - Improvement: Split into 3 plugins 
+    - Up: selection from bottom, 
+    - Down: selection from top, 
+    - Original: original behaviour
  ### v1.1
  - Bug fix: Fixed selection in non-adjacent staves
  ### v1.1
