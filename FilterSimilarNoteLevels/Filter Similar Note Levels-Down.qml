@@ -30,11 +30,15 @@ MuseScore {
     description: "Selects and copies notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
     version: "2.0"
 
+    //4.4 title: "Filter Similar Note levels-Down"
+    //4.4 thumbnailName: "thumbnail.jpg"
+    //4.4 categoryCode: "Editing-Tools"
+
     Component.onCompleted: {
         if (mscoreMajorVersion >= 4) {
             title = "Filter Similar Note levels-Down"
-                thumbnailName = "thumbnail.jpg"
-                categoryCode = "Editing-Tools"
+            thumbnailName = "thumbnail.jpg"
+            categoryCode = "Editing-Tools"
         }
     }
 
