@@ -20,20 +20,13 @@
 
 
 /**
-* @param up true|false(default) Counting notes up (from bottom) or down (from top)
-* @param forceFullScore true|false(default) Force analysing the full score whatever is the selection
+* @param counting "up"|"down" Counting notes up (from bottom) or down (from top)            
 * @param strictCounting true|false(default, original mode) In strict mode, selecting notes 1,3 from 2-notes chord, only the 1st note of that chord will be selected. In non strict mode, the notes 1,2 will be selected
-* @param expandToFullScore true(default)|false 
+* @param expandToFullScore "score"|"measure"
 */
-function makeSelection(up, forceFullScore, strictCounting, expandToFullScore) {
-
-    /// choose counting direction /////
-    var counting = (up)?"up":"down";
-    /// expand single selection to score or measure ? ///
-    var defaultExpand=((typeof expandToFullScore === "undefined")||expandToFullScore)?"score":"measure";
-    var strict=(strictCounting)?true:false;
-    var fullScore=(forceFullScore)?true:false;
+function makeSelection(counting, strictCounting, defaultExpand) {    
     
+    var fullScore= false    
 
     var cursor = curScore.newCursor();               
     var els = curScore.selection.elements 
@@ -57,7 +50,7 @@ function makeSelection(up, forceFullScore, strictCounting, expandToFullScore) {
             if (pitch==chord.notes[n].pitch){                   
                 if (counting=="up") {var level = n} 
                 if (counting=="down") {var level = chord.notes.length-1-n}  
-                if (!strict && (level==chord.notes.length-1)) {
+                if (!strictCounting && (level==chord.notes.length-1)) {
                     level=100  /// special number for bottom or top notes -depending on counting direction
                 }
             }                

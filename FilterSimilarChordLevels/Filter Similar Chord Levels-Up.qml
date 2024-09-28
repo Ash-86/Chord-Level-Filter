@@ -47,12 +47,11 @@ MuseScore {
 
         if (((typeof els[0])!=="undefined") && (els[0].type == Element.NOTE)) {
             /**
-            * @param up true|false(default) Counting notes up (from bottom) or down (from top)
-            * @param forceFullScore true|false(default) Force analysing the full score whatever is the selection
+            * @param counting "up"|"down" Counting notes up (from bottom) or down (from top)            
             * @param strictCounting true|false(default, original mode) In strict mode, selecting notes 1,3 from 2-notes chord, only the 1st note of that chord will be selected. In non strict mode, the notes 1,2 will be selected
-            * @param expandToFullScore true(default)|false 
+            * @param expandToFullScore "score"|"measure"
             */
-            Core.makeSelection(true, false, true, true);
+            Core.makeSelection("up", true, "score");
             return;
         } else {
             console.log("Invalid selection");
