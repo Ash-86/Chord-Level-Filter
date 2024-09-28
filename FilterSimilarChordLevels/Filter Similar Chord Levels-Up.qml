@@ -1,5 +1,5 @@
 //==============================================================================
-// Filter Similar Note Levels v1.0
+// Chord Level Filter v2.0
 // https://github.com/Ash-86/Filter-Similar-Note-Levels
 //
 //  Copyright (C)2023 Ashraf El Droubi (Ash-86)
@@ -26,17 +26,17 @@ import "core.js" as Core
  * 2.0:  Split in independant plugins (counting up vs. counting down)
  */
 MuseScore {
-    menuPath: "Plugins.Filter Similar Note levels-Up"
-    description: "Selects and copies notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
+    menuPath: "Plugins.Filter Similar Chord levels-Up"
+    description: "Selects and copies chord-notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
     version: "2.0"
 
-    //4.4 title: "Filter Similar Note levels-up"
+    //4.4 title: "Filter Similar Chord levels-up"
     //4.4 thumbnailName: "thumbnail.jpg"
     //4.4 categoryCode: "Editing-Tools"
 
     Component.onCompleted: {
         if (mscoreMajorVersion >= 4) {
-            title = "Filter Similar Note levels-Up"
+            title = "Filter Similar Chord levels-Up"
                 thumbnailName = "thumbnail.jpg"
                 categoryCode = "Editing-Tools"
         }
