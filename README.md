@@ -1,51 +1,59 @@
 # Chord Level Filter: *Plugin for MuseScore*
  A MuseScore 3.x/4.x plugin that selects and copies notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices. 
 
- ## Usage
+ ## Usage 
+
  - Select a note(s) at the chord level(s) you wish to filter/select/copy.
    
  - Select an end note to which you want the selection extended.
     
- - If no end note is selected then, the selection will be extended over the current measure.
+ - If no end note is selected then, the selection will be extended to measure or score according to configuration.
 
  - Running the plugin twice consecutively will extend the selection to the whole staff.
    
- - The selection is automatically copied to clipboard.
-   
- - Just paste normally using Ctrl+V in any measure you like.  
+ - The selection is automatically copied to clipboard. Paste normally using Ctrl+V.  
 
- - The plugin supports multiple selections across multiple staves and voices simultaneously. 
+ - Works with multiple voices and staves. 
 
- - However, if the selected notes are not in adjacent staves, the plugin will only filter/select, but not copy (limitation from Musescore not allowing copying non adjacent staves).
-
-  ## Demo
- https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/d7b92861-de82-4efb-9167-f7e60b75e5b6
 
  ## Configuration Options
-You can choose the direction the code follows to count note levels. Just comment out the corresponding ***"var counting"*** at the beginning of the code to suit your preference. 
-This is useful when having chords with different sizes.
+Change plugin parameters to whatever best suits your workflow:
+
+***counting direction***: up|down
+
+***strictCounting*** : effective when having chords of different sizes. sets behavior for top/bottom note selections.
+
+***defaultExpansion***: single note/chord selections expand to measure|fullScore.
+
+hint: assign a shortcut for quick action.
+
+ ## Demo  
  
- *Examples:* 
- 
-*If **var counting= "up"**, you can select 2nd notes from the bottom.*
+*Unstrict counting up:*
  
 ![up](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/eab7cf17-fb43-4bd8-bd2d-ba731680d3f2)
 
-*If **var counting= "down"**, you can select 2nd notes from the top.*
+*Unstrict counting down:*
   
 ![down](https://github.com/Ash-86/Select-Copy-Chord-Levels/assets/108089527/cddca06c-08fc-498e-8975-93858a3d651b)
 
+*Strict counting up:*
 
- *In both cases, top and bottom notes can be selected.*
+https://github.com/user-attachments/assets/a348be65-ac34-4bde-9fb1-e5776bb81359
+
+*Strict counting down:*
+
+https://github.com/user-attachments/assets/cdf853bb-06de-410e-b156-5dc88445eafe
+
 
  ## Changelog
  ### v2.0
  - Improvement: New configuration to select the full score or the current measure (original) in case of a single note selection
  - Improvement: New configuration to have a strict or unstrict (original) counting of the notes
  - Improvement: Split into 3 plugins 
-    - Up: selection from bottom, 
-    - Down: selection from top, 
-    - Original: original behaviour
+    - Strict counting up, 
+    - Strict counting up, 
+    - Unstric counting up
  ### v1.1
  - Bug fix: Fixed selection in non-adjacent staves
  ### v1.1
