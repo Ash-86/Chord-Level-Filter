@@ -26,17 +26,17 @@ import "core.js" as Core
  * 2.0:  Split in independant plugins (counting up vs. counting down)
  */
 MuseScore {
-    menuPath: "Plugins.Filter Similar Chord levels-Up"
+    menuPath: "Plugins.Filter Similar Chord levels: Strict-counting up"
     description: "Selects and copies chord-notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
     version: "2.0"
 
-    //4.4 title: "Filter Similar Chord levels-up"
+    //4.4 title: "Filter Similar Chord levels: Strict-counting up"
     //4.4 thumbnailName: "thumbnail.jpg"
     //4.4 categoryCode: "Editing-Tools"
 
     Component.onCompleted: {
         if (mscoreMajorVersion >= 4) {
-            title = "Filter Similar Chord levels-Up"
+            title = "Filter Similar Chord levels: Strict-counting up"
                 thumbnailName = "thumbnail.jpg"
                 categoryCode = "Editing-Tools"
         }

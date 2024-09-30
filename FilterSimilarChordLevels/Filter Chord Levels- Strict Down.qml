@@ -26,24 +26,23 @@ import "core.js" as Core
  * 2.0:  Split in independant plugins (counting up vs. counting down)
  */
 MuseScore {
-    menuPath: "Plugins.Filter Similar Chord levels"
-    description: "Selects and copies chord-notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
+    menuPath: "Plugins.Filter Similar Chord levels: Strict-counting down"
+    description: "Selects and copies Chord-notes of similiar levels within a measure, a specific range, or the whole staff. Works with multiple staves and voices."
     version: "2.0"
 
-    //4.4 title: "Filter Similar Chord levels"
+    //4.4 title: "Filter Similar Chord levels: Strict-counting down"
     //4.4 thumbnailName: "thumbnail.jpg"
     //4.4 categoryCode: "Editing-Tools"
 
     Component.onCompleted: {
         if (mscoreMajorVersion >= 4) {
-            title = "Filter Similar Chord levels"
+            title = "Filter Similar Chord levels: Strict-counting down"
             thumbnailName = "thumbnail.jpg"
             categoryCode = "Editing-Tools"
         }
     }
 
     onRun: {
-        
         var els = curScore.selection.elements
 
         if (((typeof els[0])!=="undefined") && (els[0].type == Element.NOTE)) {
@@ -52,7 +51,7 @@ MuseScore {
             * @param strictCounting true|false(default, original mode) In strict mode, selecting notes 1,3 from 2-notes chord, only the 1st note of that chord will be selected. In non strict mode, the notes 1,2 will be selected
             * @param expandToFullScore "score"|"measure"
             */
-            Core.makeSelection("up", false, "measure");
+            Core.makeSelection("down", true, "score");
             return;
         } else {
             console.log("Invalid selection");
@@ -64,6 +63,4 @@ MuseScore {
             return;
         }
     }
-
-
 }
