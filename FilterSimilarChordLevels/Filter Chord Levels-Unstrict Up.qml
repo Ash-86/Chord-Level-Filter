@@ -32,13 +32,13 @@ MuseScore {
 
     //4.4 title: "Filter Similar Chord levels: Unstrict-counting up"
     //4.4 thumbnailName: "thumbnail.jpg"
-    //4.4 categoryCode: "Editing-Tools"
+    //4.4 categoryCode: "Chord level filter"
 
     Component.onCompleted: {
         if (mscoreMajorVersion >= 4) {
             title = "Filter Similar Chord levels: Unstrict-counting up"
             thumbnailName = "thumbnail.jpg"
-            categoryCode = "Editing-Tools"
+            categoryCode = "Chord level filter"
         }
     }
 
